@@ -1,5 +1,0 @@
-Log.Open
-TracePrint "123" 
-TracePrint GetScreenX()
-TracePrint GetScreenY()
-Log.Close
