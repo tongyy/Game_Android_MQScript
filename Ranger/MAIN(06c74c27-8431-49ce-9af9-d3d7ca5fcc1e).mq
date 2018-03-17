@@ -1,0 +1,14 @@
+
+Call enterEvil6()
+
+Function enterEvil6() 
+	//Enter the 6 task 123
+	Delay 1639- TickCount()
+	TouchDownEvent 354,1196,0
+	TouchMoveEvent 355,1197,0,121
+	TouchMoveEvent 356,1200,0,23
+	Delay 1796- TickCount()
+	TouchUpEvent 0
+	Delay 5193- TickCount()
+	TouchDownEvent 57,672,0
+End Function

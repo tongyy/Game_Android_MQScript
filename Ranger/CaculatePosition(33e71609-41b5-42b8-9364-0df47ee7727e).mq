@@ -1,0 +1,4 @@
+Log.Open
+TracePrint GetScreenX()
+TracePrint GetScreenY()
+Log.Close
