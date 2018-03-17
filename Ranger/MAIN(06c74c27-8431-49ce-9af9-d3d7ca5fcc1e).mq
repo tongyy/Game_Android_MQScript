@@ -1,5 +1,17 @@
+log.Open
+Dim intX,intY
+Dim ImagePath
+ImagePath = "/sdcard/MobileAnJian/Script/imgs/"
+FindPic 0, 0, 0, 0, ImagePath&"start01.png","000000",0, 0.8, intX, intY
+	If intX >-1 then
+		Tap intX, intY
+		TracePrint "pos:"&intX&","&intY
+	Else
+		TracePrint "can't find it"
+End If
+log.Close
 
-Call enterEvil6()
+//Call enterEvil6()
 
 Function enterEvil6() 
 	//Enter the 6 task 123
