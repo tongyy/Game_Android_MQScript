@@ -2,21 +2,55 @@ log.Open
 Dim ImagePath
 ImagePath = "/sdcard/MobileAnJian/Script/imgs/"
 
-Call specialTask()
+Call specialAllTask(1)
+//Call specialTask(3)
 
 log.Close
 
-Sub specialTask() 
-	findAndClick("start01.png",0,0)
-	findAndClick("start02.png",0,0)
-	findAndClick("start03.png",0,0)
-	findAndClickAbsolutely("autoX80.png",567,1225,2,2000)
-	findAndClick("skill01.png",0,0)
-	findAndClick("end01.png",0,0)
-	findAndClick("end02.png",0,0)
-	findAndClick("end03.png",0,0)
-	findAndClick("end04.png",0,0)
+Sub specialAllTask(count)
+	enterSpecialTaskRight6() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskRight5() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskRight4() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskRight3() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskRight2() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskRight1() 
+	specialTask(count)
+	backSpecialCourt()
 End Sub
+
+Sub specialTask(count) 
+	For count
+		findAndClick("start01.png",0,0)
+		findAndClick("start02.png",0,0)
+		findAndClick("start03.png",0,0)
+		findAndClickAbsolutely("autoX80.png",567,1225,2,2000)
+		findAndClick("skill01.png",0,0)
+		findAndClick("end01.png",0,0)
+		findAndClick("end02.png",0,0)
+		findAndClick("end03.png",0,0)
+		findAndClick("end04.png",0,0)
+	Next
+End Sub
+
+Function backSpecialCourt()
+	findAndDelay("start01.png",500)
+	findAndClick("specialCourt02.png",0,0)
+End Function
 
 Function findAndDelay(picName,mseconds)
 	Dim isFound
@@ -67,14 +101,32 @@ Function findAndClick(picName,dx,dy)
 	Wend	
 End Function
 
-Function enterEvil6() 
-	//Enter the 6 task 123
-	Delay 1639- TickCount()
-	TouchDownEvent 354,1196,0
-	TouchMoveEvent 355,1197,0,121
-	TouchMoveEvent 356,1200,0,23
-	Delay 1796- TickCount()
-	TouchUpEvent 0
-	Delay 5193- TickCount()
-	TouchDownEvent 57,672,0
+Function enterSpecialTaskRight6() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 377,1240
+End Function
+
+Function enterSpecialTaskRight5() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 504,1238
+End Function
+
+Function enterSpecialTaskRight4() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 585,1128
+End Function
+
+Function enterSpecialTaskRight3() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 583,987
+End Function
+
+Function enterSpecialTaskRight2() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 482,905
+End Function
+
+Function enterSpecialTaskRight1() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 351,896
 End Function
