@@ -1,13 +1,22 @@
 log.Open
 Dim ImagePath
 ImagePath = "/sdcard/MobileAnJian/Script/imgs/"
+Dim specialTaskCount, specialTaskMethod
+specialTaskCount = ReadUIConfig("specialTaskCount")
+specialTaskMethod = ReadUIConfig("specialTaskMethod")
 
-Call specialAllTask(1)
+Select Case specialTaskMethod
+	Case 0
+		Call specialTask(specialTaskCount+1)
+	Case 1
+		Call specialAllTaskRight(specialTaskCount+1)
+End Select
+//Call specialAllTaskRight(1)
 //Call specialTask(3)
 
 log.Close
 
-Sub specialAllTask(count)
+Sub specialAllTaskRight(count)
 	enterSpecialTaskRight6() 
 	specialTask(count)
 	backSpecialCourt()
@@ -38,7 +47,7 @@ Sub specialTask(count)
 		findAndClick("start01.png",0,0)
 		findAndClick("start02.png",0,0)
 		findAndClick("start03.png",0,0)
-		findAndClickAbsolutely("autoX80.png",567,1225,2,2000)
+		findAndClickAbsolutely("autoX80.png",550,1219,2,2000)
 		findAndClick("skill01.png",0,0)
 		findAndClick("end01.png",0,0)
 		findAndClick("end02.png",0,0)
@@ -90,7 +99,7 @@ Function findAndClick(picName,dx,dy)
 	isFound = False
 	While isFound = False 
 		Dim intX,intY
-		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.8, intX, intY
+		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.7, intX, intY
 			If intX >-1 then
 				Tap intX+dx, intY+dy
 				Delay 1000
