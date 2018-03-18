@@ -1,1 +1,3 @@
-SnapShot "Script/imgs/test.png"
+Dim imgName 
+imgName = "Script/imgs/"&Time&".png" 
+SnapShot imgName 
