@@ -1,4 +1,4 @@
-log.Open
+//log.Open
 Dim ImagePath
 ImagePath = "/sdcard/MobileAnJian/Script/imgs/"
 Dim specialTaskCount, specialTaskMethod
@@ -10,11 +10,40 @@ Select Case specialTaskMethod
 		Call specialTask(specialTaskCount+1)
 	Case 1
 		Call specialAllTaskRight(specialTaskCount+1)
+	Case 2
+		Call specialAllTaskLeft(specialTaskCount+1)
 End Select
 //Call specialAllTaskRight(1)
 //Call specialTask(3)
 
-log.Close
+//log.Close
+
+
+Sub specialAllTaskLeft(count)
+	enterSpecialTaskLeft6() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskLeft5() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskLeft4() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskLeft3() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskLeft2() 
+	specialTask(count)
+	backSpecialCourt()
+
+	enterSpecialTaskLeft1() 
+	specialTask(count)
+	backSpecialCourt()
+End Sub
 
 Sub specialAllTaskRight(count)
 	enterSpecialTaskRight6() 
@@ -109,6 +138,37 @@ Function findAndClick(picName,dx,dy)
 		End If
 	Wend	
 End Function
+
+Function enterSpecialTaskLeft6() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 317,406
+End Function
+
+Function enterSpecialTaskLeft5() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 464,401
+End Function
+
+Function enterSpecialTaskLeft4() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 575,298
+End Function
+
+Function enterSpecialTaskLeft3() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 579,142
+End Function
+
+Function enterSpecialTaskLeft2() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 473,39
+End Function
+
+Function enterSpecialTaskLeft1() 
+	findAndDelay("specialCourt01.png",1000)
+	Tap 323,47
+End Function
+
 
 Function enterSpecialTaskRight6() 
 	findAndDelay("specialCourt01.png",1000)
