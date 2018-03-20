@@ -82,12 +82,31 @@ Sub specialTask(count)
 		findAndClick("end02.png",0,0)
 		findAndClick("end03.png",0,0)
 		findAndClick("end04.png",0,0)
+		endSpecialTaskUntil("start01.png")
 	Next
 End Sub
 
 Function backSpecialCourt()
 	findAndDelay("start01.png",500)
 	findAndClick("specialCourt02.png",0,0)
+End Function
+
+Function endSpecialTaskUntil(picName)
+	Dim isFound
+	isFound = False
+	While isFound = False 
+		Dim intX,intY
+		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.8, intX, intY
+			If intX >-1 then
+				Delay 1000
+				isFound = True	
+			Else
+				//tap right corner or anywhere
+				Tap 50,1200
+				tryToFindAndClick("end04.png",0,0)
+				Delay 500
+		End If
+	Wend	
 End Function
 
 Function findAndDelay(picName,mseconds)
@@ -137,6 +156,17 @@ Function findAndClick(picName,dx,dy)
 				Delay 500
 		End If
 	Wend	
+End Function
+
+Function tryToFindAndClick(picName,dx,dy)
+	Dim intX,intY
+	FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.7, intX, intY
+		If intX >-1 then
+			Tap intX+dx, intY+dy
+			Delay 1000
+		Else
+			Delay 500
+	End If
 End Function
 
 Function enterSpecialTaskLeft6() 
