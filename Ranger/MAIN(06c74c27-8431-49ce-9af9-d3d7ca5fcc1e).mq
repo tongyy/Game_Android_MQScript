@@ -47,10 +47,6 @@ Sub towerGame()
 		findAndClickAbsolutely("autoX80.png",520,1219,2,1000)
 		loopLineUntil("towerEnd01.png")
 		endClickAnyWhereUntil("tower01.png")
-//		findAndClick("towerEnd01.png",0,0)
-//		findAndClick("towerEnd02.png",0,0)
-//		findAndClick("towerEnd03.png",0,0)
-		findAndDelay("tower01.png",1000)
 	Next
 End Sub
 
