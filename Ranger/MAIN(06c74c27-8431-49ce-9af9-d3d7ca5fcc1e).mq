@@ -2,8 +2,15 @@
 Dim ImagePath
 ImagePath = "/sdcard/MobileAnJian/Script/imgs/"
 Dim specialTaskCount, specialTaskMethod
+Dim checkbox_1, checkbox_2, checkbox_3, checkbox_4, checkbox_5, checkbox_6
 specialTaskCount = ReadUIConfig("specialTaskCount")
 specialTaskMethod = ReadUIConfig("specialTaskMethod")
+checkbox_1 = ReadUIConfig("checkbox_1")
+checkbox_2 = ReadUIConfig("checkbox_2")
+checkbox_3 = ReadUIConfig("checkbox_3")
+checkbox_4 = ReadUIConfig("checkbox_4")
+checkbox_5 = ReadUIConfig("checkbox_5")
+checkbox_6 = ReadUIConfig("checkbox_6")
 
 Select Case specialTaskMethod
 	Case 0
@@ -12,63 +19,116 @@ Select Case specialTaskMethod
 		Call specialAllTaskRight(specialTaskCount+1)
 	Case 2
 		Call specialAllTaskLeft(specialTaskCount+1)
+	Case 3
+		Call towerGame()
 End Select
-//Call specialAllTaskRight(1)
-//Call specialTask(3)
 
 //log.Close
 
+Sub towerGame()
+	For 100
+		findAndClick("tower01.png",0,0)
+		findAndClick("tower02.png",0,0)
+		findAndClick("tower03.png",0,0)
+		findAndClick("tower04.png",0,0)
+		//line1 x+80
+		findAndClickAbsolutely("autoX80.png",270,60,2,50)
+		//first ranger position y+130
+		findAndClickAbsolutely("autoX80.png",80,375,2,50)
+		//line2
+		findAndClickAbsolutely("autoX80.png",350,60,2,50)
+		//second ranger position
+		findAndClickAbsolutely("autoX80.png",80,505,2,50)
+		//line3
+		findAndClickAbsolutely("autoX80.png",430,60,2,50)
+		//third ranger position
+		findAndClickAbsolutely("autoX80.png",80,635,2,50)
+		//auto x2
+		findAndClickAbsolutely("autoX80.png",520,1219,2,1000)
+		loopLineUntil("towerEnd01.png")
+		endClickAnyWhereUntil("tower01.png")
+//		findAndClick("towerEnd01.png",0,0)
+//		findAndClick("towerEnd02.png",0,0)
+//		findAndClick("towerEnd03.png",0,0)
+		findAndDelay("tower01.png",1000)
+	Next
+End Sub
 
 Sub specialAllTaskLeft(count)
-	enterSpecialTaskLeft6() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_6 = true Then
+		enterSpecialTaskLeft6() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskLeft5() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_5 = true Then
+		enterSpecialTaskLeft5() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskLeft4() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_4 = true Then
+		enterSpecialTaskLeft4() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskLeft3() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_3 = true Then
+		enterSpecialTaskLeft3() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskLeft2() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_2 = true Then
+		enterSpecialTaskLeft2() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskLeft1() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_1 = true Then
+		enterSpecialTaskLeft1() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 End Sub
 
 Sub specialAllTaskRight(count)
-	enterSpecialTaskRight6() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_6 = true Then
+		enterSpecialTaskRight6() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskRight5() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_5 = true Then
+		enterSpecialTaskRight5() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskRight4() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_4 = true Then
+		enterSpecialTaskRight4() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskRight3() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_3 = true Then
+		enterSpecialTaskRight3() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskRight2() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_2 = true Then
+		enterSpecialTaskRight2() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
 
-	enterSpecialTaskRight1() 
-	specialTask(count)
-	backSpecialCourt()
+	If checkbox_1 = true Then
+		enterSpecialTaskRight1() 
+		specialTask(count)
+		backSpecialCourt()
+	End If
+
 End Sub
 
 Sub specialTask(count) 
@@ -82,7 +142,7 @@ Sub specialTask(count)
 		findAndClick("end02.png",0,0)
 		findAndClick("end03.png",0,0)
 		findAndClick("end04.png",0,0)
-		endSpecialTaskUntil("start01.png")
+		endClickAnyWhereUntil("start01.png")
 	Next
 End Sub
 
@@ -91,12 +151,12 @@ Function backSpecialCourt()
 	findAndClick("specialCourt02.png",0,0)
 End Function
 
-Function endSpecialTaskUntil(picName)
+Function endClickAnyWhereUntil(picName)
 	Dim isFound
 	isFound = False
 	While isFound = False 
 		Dim intX,intY
-		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.8, intX, intY
+		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.6, intX, intY
 			If intX >-1 then
 				Delay 1000
 				isFound = True	
@@ -167,6 +227,39 @@ Function tryToFindAndClick(picName,dx,dy)
 		Else
 			Delay 500
 	End If
+End Function
+
+Function tryToFindAndClickAbsolutely(picName,x,y)
+	Dim intX,intY
+	FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.7, intX, intY
+		If intX >-1 then
+			Tap x, y
+			Delay 1000
+		Else
+			Delay 500
+	End If
+End Function
+
+Function loopLineUntil(picName)
+	Dim isFound, count
+	count = 0
+	isFound = False
+	While isFound = False 
+		Dim intX, intY
+		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.6, intX, intY
+			If intX >-1 then
+				Delay 500
+				isFound = True	
+			Else
+				//line1 x+80
+				tryToFindAndClickAbsolutely("autoX80.png",270+count*80,60)
+				Delay 1500 
+				count = count + 1
+		End If
+		If count = 3 then
+			count = 0
+		End If 
+	Wend	
 End Function
 
 Function enterSpecialTaskLeft6() 
