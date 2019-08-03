@@ -20,13 +20,27 @@ Select Case specialTaskMethod
 	Case 2
 		Call specialAllTaskLeft(specialTaskCount+1)
 	Case 3
-		Call towerGame()
+		Call infiniteTowerGame(100)
+	Case 4
+		Call breakTowerGame(50)
 End Select
 
 //log.Close
 
-Sub towerGame()
-	For 100
+Sub breakTowerGame(count)
+	For count
+		//ShowMessage "breakTowerGame START", 2000, GetScreenX()/2, GetScreenY()/2
+		findAndClick("bt01.png",0,0)
+		findAndClick("bt02.png",0,0)
+		findAndClick("bt03.png",0,0)
+		loopBtGameUntil("bt04.png")
+		//ShowMessage "OUT", 3000, GetScreenX()/2, GetScreenY()/2
+		endClickAnyWhereUntil("bt01.png")
+	Next
+End Sub
+
+Sub infiniteTowerGame(count)
+	For count
 		findAndClick("tower01.png",0,0)
 		findAndClick("tower02.png",0,0)
 		findAndClick("tower03.png",0,0)
@@ -219,7 +233,7 @@ Function findAndClick(picName,dx,dy)
 				Delay 1000
 				isFound = True	
 			Else
-				Delay 500
+				call tryToFindAndClick("giftVoucherComfirmation.png", 0, 0)
 		End If
 	Wend	
 End Function
@@ -246,6 +260,18 @@ Function tryToFindAndClickAbsolutely(picName,x,y)
 	End If
 End Function
 
+Function tryToFindAndClickAbsolutelyWithDelay(picName,x,y ,d1, d2)
+	Dim intX,intY
+	FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.9, intX, intY
+		If intX >-1 then
+			Tap x, y
+			Delay d1
+			//ShowMessage "tryToFindAndClickAbsolutelyWithDelay", 5000, GetScreenX()/2, GetScreenY()/2
+		Else
+			Delay d2
+	End If
+End Function
+
 Function loopLineUntil(picName)
 	Dim isFound, count
 	count = 0
@@ -265,6 +291,31 @@ Function loopLineUntil(picName)
 		If count = 3 then
 			count = 0
 		End If 
+	Wend	
+End Function
+
+Function loopBtGameUntil(picName)
+	Dim isFound
+	isFound = False
+	While isFound = False 
+		Dim intX, intY
+		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, 0.6, intX, intY
+			If intX >-1 then
+				Delay 500
+				isFound = True	
+			Else
+				//ranger 1-5
+				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,350, 100, 200)
+				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,490, 100, 200)
+				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,630, 100, 200)
+				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,770, 100, 200)
+				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,910, 100, 200)
+				//utils 1-3
+				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",658,275, 100, 200)
+				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",658,365, 100, 200)
+				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",658,455, 100, 200)
+				//ShowMessage "loopBtGameUntil_NOTFOUND", 5000, GetScreenX()/2, GetScreenY()/2
+		End If
 	Wend	
 End Function
 
