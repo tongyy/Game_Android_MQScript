@@ -22,10 +22,24 @@ Select Case specialTaskMethod
 	Case 3
 		Call infiniteTowerGame(100)
 	Case 4
-		Call breakTowerGame(50)
+		Call breakTowerGame(100)
+	Case 5
+		Call breakTowerGameBug(100)
+		
 End Select
 
 //log.Close
+
+Sub breakTowerGameBug(count)
+	For count
+		//ShowMessage "breakTowerGame START", 2000, GetScreenX()/2, GetScreenY()/2
+		findAndClick("bt01.png",0,0)
+		findAndClick("bt02.png",0,0)
+		findAndClick("bt03.png",0,0)
+		runBtGameBug("bt04.png")
+		endClickAnyWhereUntil("bt01.png")
+	Next
+End Sub
 
 Sub breakTowerGame(count)
 	For count
@@ -222,6 +236,22 @@ Function findAndClickAbsolutely(picName,x,y,count,mseconds)
 	Wend	
 End Function
 
+Function findAndClickWithMatch(picName,dx,dy,match)
+	Dim isFound
+	isFound = False
+	While isFound = False 
+		Dim intX,intY
+		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, match, intX, intY
+			If intX >-1 then
+				Tap intX+dx, intY+dy
+				Delay 180 
+				isFound = True	
+			Else
+				ShowMessage picName&"NOT FOUND", 2000, GetScreenX()/2, GetScreenY()/2
+				call tryToFindAndClick("giftVoucherComfirmation.png", 0, 0)
+		End If
+	Wend	
+End Function
 Function findAndClick(picName,dx,dy)
 	Dim isFound
 	isFound = False
@@ -292,6 +322,22 @@ Function loopLineUntil(picName)
 			count = 0
 		End If 
 	Wend	
+End Function
+
+Function runBtGameBug(picName)
+	Delay 2500 
+	findAndClickWithMatch("bugAttacker01.png",0,0,0.7)
+	findAndClickWithMatch("btStop.png",0,0,0.92)
+	ShowMessage "wait for game finished and Press Continue", 2000, GetScreenX()/2, GetScreenY()/2
+	Delay 252000
+	findAndClickWithMatch("btContinue.png",0,0,0.8)
+	Delay 1000
+	tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,350, 100, 200)
+	tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,490, 100, 200)
+	tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,630, 100, 200)
+	tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,770, 100, 200)
+	tryToFindAndClickAbsolutelyWithDelay("autoX80.png",80,910, 100, 200)
+	
 End Function
 
 Function loopBtGameUntil(picName)
