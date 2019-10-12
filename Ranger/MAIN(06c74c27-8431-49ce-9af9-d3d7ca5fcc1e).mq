@@ -244,7 +244,7 @@ Function findAndClickWithMatch(picName,dx,dy,match)
 		FindPic 0, 0, 0, 0, ImagePath&picName, "000000", 0, match, intX, intY
 			If intX >-1 then
 				Tap intX+dx, intY+dy
-				Delay 180 
+				Delay 100 
 				isFound = True	
 			Else
 				ShowMessage picName&"NOT FOUND", 2000, GetScreenX()/2, GetScreenY()/2
