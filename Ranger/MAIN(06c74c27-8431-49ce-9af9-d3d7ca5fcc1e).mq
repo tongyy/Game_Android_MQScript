@@ -360,6 +360,7 @@ Function loopBtGameUntil(picName)
 				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",658,275, 100, 200)
 				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",658,365, 100, 200)
 				tryToFindAndClickAbsolutelyWithDelay("autoX80.png",658,455, 100, 200)
+				tryToFindAndClick("btContinue.png",0,0)
 				//ShowMessage "loopBtGameUntil_NOTFOUND", 5000, GetScreenX()/2, GetScreenY()/2
 		End If
 	Wend	
